@@ -1,1 +1,1 @@
-"# djando-jop-board" 
+"# django-jop-board" 
