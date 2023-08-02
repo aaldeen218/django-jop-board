@@ -5,7 +5,7 @@ from .models import  Job
 
 def job_list(request):
     x={ 'all_job':Job.objects.all()}
-    return render(request,'job_list.html',x)
+    return render(request,'jobs.html',x)
 
 
 def job_detail(request):
