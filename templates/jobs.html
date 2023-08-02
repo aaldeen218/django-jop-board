@@ -76,7 +76,7 @@
     </header>
 
     <!-- Page Content -->
-    <div class="page-heading about-heading header-text" style="background-image:   url( {% static 'assets/images/heading-6-1920x500.jpg' %}   ) ;">
+    <div class="page-heading about-heading header-text" style="background-image:   url( {% static 'assets/images/heading-6-1920x500.jpg'%}      ) ;">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -239,28 +239,29 @@
 
           <div class="col-md-9">
             <div class="row">
+              {% for x in all_job %}
               <div class="col-md-6">
-                {% for x in all_job %}
+                
                 <div class="product-item">
-                  <a href="job-details.html"><img src=" {% static ' assets/images/product-1-370x270.jpg' %}" alt=""></a>
+                  <a href="{% url  'jobs:job_detail' x.id  %}"><img src="  {{x.image.url}}  " alt="image" ></a>
                   <div class="down-content">
                     <a href="job-details.html"><h4>{{x.title}}</h4></a>
 
-                    <h6>$60 000</h6>
+                    <h6>{{x.salary}}</h6>
 
-                    <h4><small><i class="fa fa-briefcase"></i> Medical / Health Jobs <br> <strong><i class="fa fa-building"></i> BMI Kings Park Hospital</strong></small></h4>
+                    <h4><small><i class="fa fa-briefcase"></i> Medical / {{x.category}} <br> <strong><i class="fa fa-building"></i> BMI Kings Park Hospital</strong></small></h4>
 
                     <small>
-                         <strong title="Posted on"><i class="fa fa-calendar"></i> 15-06-2020</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+                         <strong title="Posted on"><i class="fa fa-calendar"></i> {{x.published_at | date:"d-m-Y"}}</strong> &nbsp;&nbsp;&nbsp;&nbsp;
                          <strong title="Type"><i class="fa fa-file"></i> Contract</strong> &nbsp;&nbsp;&nbsp;&nbsp;
                          <strong title="Location"><i class="fa fa-map-marker"></i> London</strong>
                     </small>
                   </div>
                 
                 </div>
-                {% endfor %}
+                
               </div>
-
+              {% endfor %}
              
             
 

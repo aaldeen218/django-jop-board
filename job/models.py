@@ -21,7 +21,7 @@ class Job(models.Model):
     salary=models.IntegerField(default=0)
     experience=models.IntegerField(default=1)
     category=models.ForeignKey(Category,related_name='job_catogrey',on_delete=models.CASCADE)
-    #image=models.ImageField(upload_to='jops/')
+    image=models.ImageField(upload_to='image/jops/')
 
 
     def __str__(self):
