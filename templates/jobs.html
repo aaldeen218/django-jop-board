@@ -245,7 +245,7 @@
                 <div class="product-item">
                   <a href="{% url  'jobs:job_detail' x.id  %}"><img src="  {{x.image.url}}  " alt="image" ></a>
                   <div class="down-content">
-                    <a href="job-details.html"><h4>{{x.title}}</h4></a>
+                    <a href="{% url  'jobs:job_detail' x.id  %}"><h4>{{x.title}}</h4></a>
 
                     <h6>{{x.salary}}</h6>
 
