@@ -1,4 +1,5 @@
 {% load static %}
+{% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -149,9 +150,18 @@
             <div class="section-heading">
             </div>
 
-           
+           <form method="POST" enctype="multipart/form-data">
 
+            {% csrf_token %}
+            {% bootstrap_form form %}
+
+                      
+
+           <div class="contact-form">
             
+              <button type="submit" class="filled-button btn-block">Apply for this job</button>
+            </form>
+          </div>
           </div>
 
           <div class="col-md-3">

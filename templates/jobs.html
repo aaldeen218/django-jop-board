@@ -264,16 +264,31 @@
               {% endfor %}
              
             
-
+              {% if all_job.has_other_pages %}
               <div class="col-md-12">
                 <ul class="pages">
-                  <li><a href="#">1</a></li>
-                  <li class="active"><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                  {% if all_job.has_previous %}
+                  <li><a href="?page={{all_job.previous_page_number}} "><i class="fa fa-angle-double-left"></i></a></li>
+                  {% endif %}
+
+                  {% for i in all_job.paginator.page_range %}
+                  
+
+                    <li class="{% if i   == all_job.number %} active {% endif %}" ><a href="?page={{i}}">{{i}}</a></li>
+                  
+               
+
+                  {% endfor %}
+
+                  
+
+
+                  {% if all_job.has_next %}
+                  <li><a href="?page={{all_job.next_page_number}}"><i class="fa fa-angle-double-right"></i></a></li>
+                  {% endif %}
                 </ul>
               </div>
+              {% endif %}
             </div>
           </div>
         </div>
