@@ -1,5 +1,8 @@
+
+
 {% load static %}
 {% load bootstrap4 %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{% static 'assets/images/favicon.ico' %} ">
+    <link rel="icon" href=" {% static 'assets/images/favicon.ico' %}  ">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
@@ -22,8 +25,6 @@
     <link rel="stylesheet" href=" {% static  'assets/css/fontawesome.css' %}">
     <link rel="stylesheet" href="  {% static 'assets/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
-
-    
 
   </head>
 
@@ -79,149 +80,21 @@
     </header>
 
     <!-- Page Content -->
-    <div class="page-heading about-heading header-text" style="background-image: url({% static 'assets/images/heading-6-1920x500.jpg ' %});">
+    <div class="page-heading about-heading header-text" style="background-image:   url( {% static 'assets/images/heading-6-1920x500.jpg'%}      ) ;">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="text-content">
-              <h4>Security / Protective Services Jobs</h4>
-
-              <h2>Security Officer - Luxury Retail</h2>
+              <h4>Lorem ipsum dolor sit amet</h4>
+              <h2>Jobs</h2>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="products">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-9 col-sm-8">
-              <p class="lead">
-                   <i class="fa fa-map-marker"></i> London &nbsp;&nbsp;
-                   <i class="fa fa-calendar"></i> {{job.published_at | date:"d-m-Y"}} &nbsp;&nbsp;
-                   <i class="fa fa-file"></i> Contract
-              </p>
-
-              <br>
-              <br>
-              
-              <div class="form-group">
-                <h5>Decription</h5>
-              </div>
-              <br>
-             <p>
-              {{job.description}}
-             </p>
-              <br>
-          </div>
-
-          <div class="col-md-3 col-sm-4">
-            <div class="contact-form">
-              <div class="form-group">
-                <button type="submit" class="filled-button btn-block">Apply for this job</button>
-              </div>
-            </div>
-
-            <div>
-              <img src=" {{job.image.url}} " alt="kljljk" class="img-fluid wc-image">
-            </div>
-
-            <br>
-
-            <ul class="social-icons text-center">
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-              <li><a href="#"><i class="fa fa-behance"></i></a></li>
-            </ul>
-
-            <br>
-            <br>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-9">
-            <div class="section-heading">
-            </div>
-
-           <form method="POST" enctype="multipart/form-data">
-
-            {% csrf_token %}
-            {% bootstrap_form form %}
-
-                      
-
-           <div class="contact-form">
-            
-              <button type="submit" class="filled-button btn-block">Apply for this job</button>
-            </form>
-          </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="section-heading">
-              <h2>Contact Details</h2>
-            </div>
-            
-            <div class="left-content">
-              <p>
-                <span>Name</span>
-
-                <br>
-
-                <strong>John Smith</strong>
-              </p>
-
-              <p>
-                <span>Phone</span>
-
-                <br>
-                
-                <strong>
-                  <a href="tel:123-456-789">123-456-789</a>
-                </strong>
-              </p>
-
-              <p>
-                <span>Mobile phone</span>
-
-                <br>
-                
-                <strong>
-                  <a href="tel:456789123">456789123</a>
-                </strong>
-              </p>
-
-              <p>
-                <span>Email</span>
-
-                <br>
-                
-                <strong>
-                  <a href="mailto:john@carsales.com">john@carsales.com</a>
-                </strong>
-              </p>
-
-              <p>
-                <span>Website</span>
-
-                <br>
-                
-                <strong>
-                  <a href="http://www.cannonguards.com/">http://www.cannonguards.com/</a>
-                </strong>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+{% block body %}
+{% endblock %}
+  
 
     <footer>
       <div class="container">
@@ -313,3 +186,8 @@
   </body>
 
 </html>
+
+
+
+
+
