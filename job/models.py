@@ -1,4 +1,6 @@
+
 from django.db import models
+from django.contrib.auth.models import User
 
 JOB_TYPE=(
     ('Full Time','Full Time'),
@@ -13,6 +15,7 @@ class Category(models.Model):
         return self.name  
 
 class Job(models.Model):
+    owner=models.ForeignKey(User,on_delete=models.CASCADE,related_name='job_owner')
     title=models.CharField(max_length=50)
     job_type=models.CharField(max_length=15,choices=JOB_TYPE)
     description=models.TextField(max_length=1000)
