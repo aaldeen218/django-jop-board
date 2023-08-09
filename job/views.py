@@ -2,18 +2,24 @@ from django.shortcuts import render
 from .models import  Job
 from django.core.paginator import Paginator
 from .form import ApplyForm,Job_add_form
-
+from .filters import JobFilter
 # Create your views here.
 
 def job_list(request):
     job_list=Job.objects.all()  
+
+    myfilter=JobFilter(request.GET,queryset=job_list)
+    job_list=myfilter.qs
+
+
+
     paginator=Paginator(job_list,3)
     page_number=request.GET.get('page')
     page_obj=paginator.get_page(page_number)
 
     
 
-    context={ 'all_job':page_obj}
+    context={ 'all_job':page_obj,'myfilter':myfilter}
     return render(request,'jobs.html',context)
 
 class Meta:

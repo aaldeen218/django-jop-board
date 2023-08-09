@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block page_title  %}
+<h2>
+   Chane Password
+</h2>
+{% endblock %}
+{% block body %}
+
+<form action="" method="POST">
+
+
+{% csrf_token %}
+{% bootstrap_form form %}
+
+<input type="submit" class="btn btn-default btn-lg"  value="Chane Password">
+
+</form>
+
+
+{% endblock %}

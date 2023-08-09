@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block page_title  %}
+<h2>
+   Login
+</h2>
+{% endblock %}
+{% block body %}
+
+{% if form.errors %}
+<p>
+Your usename and password didn't  match . plase try again.
+</p>
+{% endif %}
+
+{% if next %}
+{% if user.is_authenticated %}
+<p>
+    Your accont doesn't have access to this page 
+</p>
+{% else %}
+ <p>
+    plase login to see this page 
+ </p>
+ {% endif %}
+ {% endif %}
+
+
+
+ <form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+{% bootstrap_form userform %}
+{% bootstrap_form profile %}
+{% buttons %}
+
+<div class="col-md-6 mx-auto">
+    <div class="contact-form">
+      <div class="form-group">
+        <button type="submit" class="filled-button btn-block">Edit</button>
+    </div>
+    </div>
+{% endbuttons %}
+
+
+
+
+
+
+
+
+
+ </form>
+
+{% endblock  %}

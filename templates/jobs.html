@@ -1,5 +1,10 @@
 {% extends "base.html"%}
-
+{% load bootstrap4 %}
+{% block page_title %}
+<h2>
+     Jobs Avilable
+</h2>
+{% endblock %}
 {% block body %}
 
 <div class="products">
@@ -7,146 +12,10 @@
     <div class="row">
       <div class="col-md-3">
          <div class="contact-form">
-            <form action="#">
-             <h5 style="margin-bottom: 15px">Type</h5>
-
-             <div>
-                  <label>
-                       <input type="checkbox">
-
-                       <small>Contract (5)</small>
-                  </label>
-             </div>
-
-             <div>
-                  <label>
-                       <input type="checkbox">
-
-                       <small>Full time (5)</small>
-                  </label>
-             </div>
-
-             <div>
-                  <label>
-                       <input type="checkbox">
-
-                       <small>Internship (5)</small>
-                  </label>
-             </div>
-
-             <br>
-
-             <h5 style="margin-bottom: 15px">Category</h5>
-
-             <div>
-                  <label>
-                       <input type="checkbox">
-
-                       <small>Accounting / Finance / Insurance Jobs (5)</small>
-                  </label>
-             </div>
-
-             <div>
-                  <label>
-                       <input type="checkbox">
-
-                       <small>Accounting / Finance / Insurance Jobs (5)</small>
-                  </label>
-             </div>
-
-             <div>
-                  <label>
-                       <input type="checkbox">
-
-                       <small>Accounting / Finance / Insurance Jobs (5)</small>
-                  </label>
-             </div>
-
-             <br>
-
-             <h5 style="margin-bottom: 15px">Career levels</h5>
-
-             <div>
-                  <label>
-                       <input type="checkbox">
-
-                       <small>Entry Level (5)</small>
-                  </label>
-             </div>
-
-             <div>
-                  <label>
-                       <input type="checkbox">
-
-                       <small>Entry Level (5)</small>
-                  </label>
-             </div>
-
-             <div>
-                  <label>
-                       <input type="checkbox">
-
-                       <small>Entry Level (5)</small>
-                  </label>
-             </div>
-
-             <br>
-
-             <h5 style="margin-bottom: 15px">Education levels</h5>
-
-             <div>
-                  <label>
-                       <input type="checkbox">
-
-                       <small>Associate Degree (5)</small>
-                  </label>
-             </div>
-
-             <div>
-                  <label>
-                       <input type="checkbox">
-
-                       <small>Associate Degree (5)</small>
-                  </label>
-             </div>
-
-             <div>
-                  <label>
-                       <input type="checkbox">
-
-                       <small>Associate Degree (5)</small>
-                  </label>
-             </div>
-
-             <br>
-
-
-             <h5 style="margin-bottom: 15px">Years of experience</h5>
-
-             <div>
-                  <label>
-                       <input type="checkbox">
-
-                        <small>&lt; 1 (5)</small>
-                  </label>
-             </div>
-
-             <div>
-                  <label>
-                       <input type="checkbox">
-
-                        <small>&lt; 1 (5)</small>
-                  </label>
-             </div>
-
-             <div>
-                  <label>
-                       <input type="checkbox">
-
-                        <small>&lt; 1 (5)</small>
-                  </label>
-             </div>
-        </form>
+           <form method="get">
+{% bootstrap_form myfilter.form %}
+<input type="submit">
+           </form>
          </div>
       </div>
 
