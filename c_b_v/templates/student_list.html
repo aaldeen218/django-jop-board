@@ -1,0 +1,6 @@
+<ul>
+    {% for publisher in object_list %}
+        <li>{{ publisher.name }}</li>
+        <li>{{ publisher.create_at }}</li>
+    {% endfor %}
+</ul>

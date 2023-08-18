@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block body %}
+
+
+<form method='POST'  enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% bootstrap_form form %}
+
+
+    <button type="submit" name="add" class="btn btn-primary">Add</button>
+
+
+</form>
+{% endblock body %}
+

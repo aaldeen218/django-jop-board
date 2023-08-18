@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{%  load bootstrap4 %}
+{% load widget_tweaks %}
+
+
+{% block body %}
+<form method="POST" enctype="multipart/form-data" >
+
+    {%  csrf_token  %}
+      {%   bootstrap_form form  %}
+      {% comment %} {% render_field form.test_name class='form-control' placeholder='Write your name ..' %} {% endcomment %}
+
+      <button type="submit" class="btn btn-primary" >Save</button>
+   </form>
+ 
+{% if y  %}
+
+    <h2> Test Items  </h2>
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr><th>Name</th><th>Price</th><th>Actions</th></tr>
+        </thead>
+        <tbody data-link="row" class="rowlink">
+            {% for  x in y  %}
+          <tr>
+            <td><a href="{% url 'test_:name_subtest' x.id %}">{{x.test_name}}</a></td><td>{{x.test_price}}</td>
+                <td class="rowlink-skip">
+                    <a href="#">Action</a>
+                </td>
+        </tr>
+          
+          {% endfor %}
+        </tbody>
+      </table>
+
+
+{% endif %}
+
+
+
+{% endblock body %}
+
+
+<script>
+
+    
+</script>

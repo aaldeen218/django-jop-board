@@ -25,7 +25,10 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('', include('job.urls',namespace='jobs')),
-    path('contact/',include('contact.urls',namespace='contact'))
+    path('contact/',include('contact.urls',namespace='contact')),
+    path('',include('tests.urls',namespace='test_')),
+    path('',include('patient.urls',namespace='patient')),
+    path('',include('c_b_v.urls',namespace='c_b_v')),
     
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 

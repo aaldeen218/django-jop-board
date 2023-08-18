@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import  Job
 from django.core.paginator import Paginator
 from .form import ApplyForm,Job_add_form
@@ -52,9 +52,12 @@ def add_job(request):
             myform=form.save(commit=False)
             myform.owner=request.user
             myform.save()
+        
+        return redirect('jobs:add_job')
     else:
         form=Job_add_form()
-    x={ 'form':form}
+        j=Job.objects.all()
+    x={ 'form':form, 'j':j}
     return render(request,'job-add.html',x)
 
 

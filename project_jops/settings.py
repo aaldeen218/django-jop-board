@@ -39,11 +39,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     # my App
     'job',
     'bootstrap4',
     'django_filters',
     'contact',
+    'tests',
+    'patient',
+    'c_b_v',
+
+    
+    
 ]
 
 MIDDLEWARE = [
