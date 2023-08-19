@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{%  load bootstrap4 %}
+{% load widget_tweaks %}
+
+{% block body %}
+<br>
+
+  <br>
+  <br>
+  <br>
+<h2> </h2>
+<br>
+<br>
+
+<form method="POST" enctype="multipart/form-data" >
+  
+    {%  csrf_token  %}
+      {% comment %} {%   bootstrap_form form  %} {% endcomment %}
+      {% render_field form.p_name|add_class:"form-control "|attr:"autofocus"   placeholder='Enter SubTest Name' %}
+     
+   
+
+  <br>
+      
+            {% render_field  form.test_name|join:"------" %} 
+      
+        <br>
+        <br>
+
+    
+        
+            
+      {% render_field form.check_total  placeholder='Enter part' %} 
+
+      
+      <button type="submit" class="btn btn-primary" >Save</button>
+   </form>
+ 
+{% if y  %}
+
+  
+    <table class="table table-striped table-bordered table-hove" >
+        <thead>
+          <tr><th>Name</th>
+            <th>Normal Range</th>
+            <th>Date</th>
+            <th>Requested</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody data-link="row" class="rowlink">
+            {% for  x in y  %}
+          <tr>
+            <td>{{x.id}}</a></td>
+            <td>{{x.p_name|default_if_none:""}}</td>
+            <td>{{x.check_date|default_if_none:""|date:'d-m-o'}}</td>
+           <td>
+            {% for v in x.test_name.all %}
+                {{v}} ,
+                {% endfor %}
+           </td>
+                <td class="rowlink-skip">
+                    <a href="#">Action
+                </td>
+        </tr>
+          
+          {% endfor %}
+        </tbody>
+      </table>
+     
+
+
+{% endif %}
+
+
+{% endblock body %}
+
+
+<script>
+
+    
+</script>

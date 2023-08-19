@@ -20,16 +20,26 @@
  
 {% if y  %}
 
-    <h2> Test Items  </h2>
+    <h2> Patient List  </h2>
     <table class="table table-striped table-bordered table-hover">
         <thead>
-          <tr><th>Name</th><th>Price</th><th>Actions</th></tr>
+          <tr><th>Name</th>
+            <th>Age</th>
+            <th>Sex</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody data-link="row" class="rowlink">
             {% for  x in y  %}
           <tr>
-            <td><a href="{% url 'test_:name_subtest' x.id %}">{{x.test_name}}</a></td><td>{{x.test_price}}</td>
+            <td>{{x.p_name}}</td>
+            <td>{{x.p_sex|default_if_none:""}}</td>
+            <td>{{x.p_age|default_if_none:""}}</td>
+            <td>{{x.p_phone|default_if_none:""|phone2numeric }}</td>
+
                 <td class="rowlink-skip">
+                    <a href="#">X</a>
                     <a href="#">Action</a>
                 </td>
         </tr>

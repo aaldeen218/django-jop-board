@@ -4,3 +4,5 @@ from .models import *
 # Register your models here.
 admin.site.register(Test)
 admin.site.register(SubTest)
+admin.site.register(Patient)
+admin.site.register(Check)

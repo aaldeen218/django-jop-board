@@ -28,25 +28,56 @@ def test_show(request):
 
 def subTest_a(request,id):
     j=SubTest.objects.filter(test_name=id)
-    print(j)
+    ee=Test.objects.get(pk=id)
+    print(ee)
     if request.method=='POST':
         form=Form_SubTest(request.POST,request.FILES)
         if form.is_valid():
-            #myform=form.save()
-           # myform.owner=request.user
-           form.save()
+           myform=form.save(commit=False)
+           myform.test_name=Test.objects.get(pk=id)
+           
+           myform.save()
         
         return redirect('test_:name_subtest',id)
     else:
         form=Form_SubTest()
         
-        x={ 'form':form, 'y':j}
+        x={ 'form':form, 'y':j,'ee':ee}
     return render(request,'show_subTest.html',x)
 
+def patient_add(request):
+      if request.method=='POST':
+        form=Form_Patient(request.POST)
+        if form.is_valid():
+            #myform=form.save()
+           # myform.owner=request.user
+           form.save()
+        
+        return redirect('test_:patient_add')
+      else:
+        form=Form_Patient()
+        j=Patient.objects.all()
+        x={ 'form':form, 'y':j}
+      return render(request,'patient_add.html',x)
 
 
 
 
+def check_add(request):
+    j=Check.objects.filter().order_by('-id')
+    ee=j
+    print(ee)
+    if request.method=='POST':
+        form=Form_Check(request.POST)
+        if form.is_valid():
+           form.save()
+        
+        return redirect('test_:check_add')
+    else:
+        form=Form_Check()
+        
+        x={ 'form':form, 'y':j,'ee':ee}
+    return render(request,'check_add.html',x)
 
 
 

@@ -1,28 +1,42 @@
 {% extends 'base.html' %}
 {%  load bootstrap4 %}
-
+{% load widget_tweaks %}
 
 {% block body %}
-<form method="POST" enctype="multipart/form-data" >
+<br>
 
+  <br>
+  <br>
+  <br>
+<h2> SubTest {{ee}}  </h2>
+<br>
+<br>
+
+<form method="POST" enctype="multipart/form-data" >
+  
     {%  csrf_token  %}
-      {%   bootstrap_form form  %}
+      {% comment %} {%   bootstrap_form form  %} {% endcomment %}
+        
+            {% render_field form.sub_name|add_class:"form-control "|attr:"autofocus"   placeholder='Enter SubTest Name' %}
+            {% render_field form.sub_normal|set_data:"filters:OverText"  placeholder='Enter Normal Range' %}
+            {% render_field form.sub_part  placeholder='Enter part' %} 
+
       <button type="submit" class="btn btn-primary" >Save</button>
    </form>
  
 {% if y  %}
 
-    <h2> SubTest CBC  </h2>
+  
     <table class="table table-striped table-bordered table-hover">
         <thead>
-          <tr><th>Name</th><th>Price</th><th>Actions</th></tr>
+          <tr><th>Name</th><th>Normal Range</th><th>Actions</th></tr>
         </thead>
         <tbody data-link="row" class="rowlink">
             {% for  x in y  %}
           <tr>
-            <td><a href="#inputmask">{{x.sub_name}}</a></td><td>{{x.sub_normal}}</td>
+            <td>{{x.sub_name}}</a></td><td>{{x.sub_normal|default_if_none:""}}</td>
                 <td class="rowlink-skip">
-                    <a href="#">Action</a>
+                    <a href="#">Action
                 </td>
         </tr>
           

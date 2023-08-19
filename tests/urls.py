@@ -10,6 +10,8 @@ urlpatterns=[
    # path('show_test/',Test_show_class.as_view(),name='show_t'),
      path('test/', views.test_show,name='name_test'),
      path('sub_test/<int:id>', views.subTest_a,name='name_subtest'),
+     path('patient_add/', views.patient_add,name='patient_add'),
+     path('check_add/', views.check_add,name='check_add'),
     #path('s_test',SubTest_class.as_view(),name='add_sub'),
     #path('show_test/<int:x>',SubTest_class.as_view(),name='show_sub'),
 ]
