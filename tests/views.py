@@ -2,9 +2,9 @@ from audioop import reverse
 from typing import Any, Dict
 from django.db import models
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from .models import SubTest,Test
+from .models import SubTest,Test,Check
 from .form import *
 #from django.views.generic import ListView,CreateView
 
@@ -53,7 +53,7 @@ def patient_add(request):
            # myform.owner=request.user
            form.save()
         
-        return redirect('test_:patient_add')
+        return redirect('test_:check_add')
       else:
         form=Form_Patient()
         j=Patient.objects.all()
@@ -66,7 +66,7 @@ def patient_add(request):
 def check_add(request):
     j=Check.objects.filter().order_by('-id')
     ee=j
-    print(ee)
+
     if request.method=='POST':
         form=Form_Check(request.POST)
         if form.is_valid():
@@ -78,6 +78,28 @@ def check_add(request):
         
         x={ 'form':form, 'y':j,'ee':ee}
     return render(request,'check_add.html',x)
+
+
+def result_add(request):
+    j=Check_items.objects.all()
+    f=Check_items.objects.all().first()
+    #f=y.get(id=120)
+    ee=j
+    #data=Form_Check(instance=f)
+    # data = get_object_or_404(f)
+
+
+    if request.method=='POST':
+        form=Form_Check_items(request.POST,instance=f)
+        if form.is_valid():
+           form.save()
+        
+        return redirect('test_:result_add')
+    else:
+        form=Form_Check_items(instance=f)
+        
+        x={ 'form':form, 'y':j,'ee':ee}
+    return render(request,'result_add.html',x)
 
 
 

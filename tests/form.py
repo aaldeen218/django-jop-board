@@ -32,4 +32,13 @@ class Form_Check(forms.ModelForm):
         widget=forms.Select
     )
         
-       
+
+class Form_Check_items(forms.ModelForm):
+    class Meta:
+        model=Check_items
+        fields='__all__'      
+        fields=['check_id','sub_id','check_result']
+    check_result= forms.ModelChoiceField(
+        queryset=Check_items.objects.all(),
+        widget=forms.CheckboxSelectMultiple
+    )
