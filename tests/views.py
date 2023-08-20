@@ -67,6 +67,7 @@ def check_add(request):
     j=Check.objects.filter().order_by('-id')
     ee=j
 
+
     if request.method=='POST':
         form=Form_Check(request.POST)
         if form.is_valid():
@@ -87,9 +88,22 @@ def result_add(request):
     ee=j
     #data=Form_Check(instance=f)
     # data = get_object_or_404(f)
+    # Check_items.objects.all().update(check_result="8")
+    print("Edit")
+
+    
+    # print(request)
 
 
     if request.method=='POST':
+        table_data = request.POST.get('table_data')
+        print(table_data)
+        o=[]
+        #o=str(table_data).split("")
+       # print(o[4])
+        
+        # return JsonResponse({'message': 'Data received successfully'})
+        
         form=Form_Check_items(request.POST,instance=f)
         if form.is_valid():
            form.save()

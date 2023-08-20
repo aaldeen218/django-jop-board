@@ -41,13 +41,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     # my App
+    'tests',
     'job',
     'bootstrap4',
     'django_filters',
     'contact',
-    'tests',
+    
     'patient',
     'c_b_v',
+    #'th',
 
     
     
