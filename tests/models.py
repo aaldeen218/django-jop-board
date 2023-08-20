@@ -46,7 +46,7 @@ class Check(models.Model):
     
     def __str__(self):
         #return  f'{self.p_name} # {self.id},'
-        return    str(self.p_name)+"#"+str(self.id)+","+",".join(self.test_name.all().values_list('test_name', flat=True))
+        return    str(self.p_name)+"#"+str(self.id)+"|"+"|".join(self.test_name.all().values_list('test_name', flat=True))
 
 
 
@@ -72,7 +72,7 @@ def update_counter(sender, instance, action, reverse, model, pk_set, **kwargs):
         Check_items.objects.filter(check_id=instance_2).delete()
         t=Test.objects.all()
         l=[]
-        l=str(instance).split(",")
+        l=str(instance).split("|")
         l.pop(0)
         
         temp=[]

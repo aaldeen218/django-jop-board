@@ -97,18 +97,50 @@ def result_add(request):
 
     if request.method=='POST':
         table_data = request.POST.get('table_data')
-        print(table_data)
+        # print(table_data)
         o=[]
-        #o=str(table_data).split("")
+        sentence = ''.join(table_data.split())
+        s2 = sentence.replace("\\n","")
+        s3 = s2.replace("[","")
+        s4 = s3.replace("]","")
+        o=s4.split(',')
+        temp=[]
+        for i in range(len(o)):
+            if i%2==0:
+             g1=o[i].replace("\"","")
+             g2=g1.replace("\'","")
+             temp.append(g2)
+        
+
+        for j in range(0,len(temp),1):
+            if j%2!=0:   
+            #  print(j-1) 
+             Check_items.objects.filter(id=int(temp[j-1])).update(check_result=temp[j]) 
+           
+           
+            # print(j)   
+            #  
+        # Check_items.objects.get().update(temp[j+1]) 
+            
+
+
+
+
+        # print(o[0])
+        # print(o[2])
+        # print(o[4])
+        # print(o[6])
+        # o=[]
+        # o=str(s).split("")
        # print(o[4])
         
         # return JsonResponse({'message': 'Data received successfully'})
         
         form=Form_Check_items(request.POST,instance=f)
         if form.is_valid():
-           form.save()
+           #form.save()
         
-        return redirect('test_:result_add')
+         return redirect('test_:result_add')
     else:
         form=Form_Check_items(instance=f)
         
