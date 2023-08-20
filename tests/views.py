@@ -83,7 +83,7 @@ def check_add(request):
 def result_add(request):
     j=Check_items.objects.all()
     f=Check_items.objects.all().first()
-    #f=y.get(id=120)
+    
     ee=j
     #data=Form_Check(instance=f)
     # data = get_object_or_404(f)
