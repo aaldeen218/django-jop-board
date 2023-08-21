@@ -17,32 +17,41 @@
 
 <script>
   $(document).ready(function() {
-    // Get table data on button click
+    // Get table data on button click.
     $('#submitBtn').click(function() {
       var tableData = [];
+      var tableData2 = [];
+      var columnIndex = 2; // Specify the column index (zero-based) to get data from
+  
       $('#myTable tbody tr').each(function(row, tr) {
-        var rowData = [];
-        $(tr).find('td').each(function(col, td) {
-          rowData.push($(td).text());
+        var rowData1 = [];
+        $(tr).find('td').eq(0).each(function(col, td) { // Use eq() to select a specific column
+          rowData1.push($(td).text());
         });
-        tableData.push(rowData);
+        
+        var rowData2 = [];
+        $(tr).find('td').eq(3).each(function(col, td) { // Use eq() to select a specific column
+          rowData2.push($(td).text());
+        });
+        
+        tableData.push(rowData1);
+        tableData2.push(rowData2);
       });
-
-      // Make AJAX request to Django view
+  
+      // Make AJAX request to Django view.
       $.ajax({
         type: 'POST',
         url: '',
         data: {
-          'table_data': JSON.stringify(tableData),
-          'csrfmiddlewaretoken': '{{ csrf_token }}'  // Include CSRF token for security
+          'table_data': JSON.stringify(tableData+'$$'+tableData2),
+          'csrfmiddlewaretoken': '{{ csrf_token }}'  // Include CSRF token for security.
         },
         success: function(response) {
-         
-          // Handle success response from Django view
+          // Handle success response from Django view.
           console.log(response);
         },
         error: function(xhr, errmsg, err) {
-          // Handle error response from Django view
+          // Handle error response from Django view.
           console.log(xhr.status + ": " + xhr.responseText);
         }
       });
@@ -90,17 +99,21 @@
 
     <table id="myTable" class="table table-striped table-bordered table-hove" >
         <thead>
-          <tr><th>ID</th>
+          <tr>
+            <th>ID</th>
+            <th>Test Name</th>
            
             <th>Sub Name</th>
          
             <th>Result</th>
+            <th>Normal Range</th>
         </tr>
         </thead>
         <tbody data-link="row" class="rowlink" >
             {% for  x in y  %}
           <tr>
             <td>{{x.id}}</td>
+            <td>{{x.sub_id.test_name}}</td>
             <td>{{x.sub_id}}</td>
             <td>
               <div contenteditable>
@@ -108,7 +121,7 @@
               </div>
 
                 <td class="rowlink-skip">
-                    <a href="#">Action
+                    {{x.sub_id.sub_normal|default_if_none:""}}
                 </td>
         </tr>
           

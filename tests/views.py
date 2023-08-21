@@ -98,43 +98,31 @@ def result_add(request):
     if request.method=='POST':
         table_data = request.POST.get('table_data')
         # print(table_data)
-        o=[]
-        sentence = ''.join(table_data.split())
-        s2 = sentence.replace("\\n","")
-        s3 = s2.replace("[","")
-        s4 = s3.replace("]","")
-        o=s4.split(',')
-        temp=[]
-        for i in range(len(o)):
-            if i%2==0:
-             g1=o[i].replace("\"","")
-             g2=g1.replace("\'","")
-             temp.append(g2)
-        
 
-        for j in range(0,len(temp),1):
-            if j%2!=0:   
-            #  print(j-1) 
-             Check_items.objects.filter(id=int(temp[j-1])).update(check_result=temp[j]) 
-           
-           
-            # print(j)   
-            #  
-        # Check_items.objects.get().update(temp[j+1]) 
+        part_one_str,part_tow_str=str(table_data).split('$$')
+        part_one_str=part_one_str.replace("\"","")
+        # print(part_tow_str)
+
+        part_one_List=part_one_str.split(",")
+
+        part_tow_str=part_tow_str.replace("\\n","")
+        part_tow_str = ''.join(part_tow_str.split())
+        part_tow_str=part_tow_str.replace("\"","")
+
+        part_tow_List=part_tow_str.split(",")
+
+        # print(part_tow_List)
+       
+        for j in range(0,len(part_one_List),1):
+            # print((part_tow_List[j]))
             
+            Check_items.objects.filter(id=int(part_one_List[j])).update(check_result=part_tow_List[j]) 
+           
+       
 
 
 
 
-        # print(o[0])
-        # print(o[2])
-        # print(o[4])
-        # print(o[6])
-        # o=[]
-        # o=str(s).split("")
-       # print(o[4])
-        
-        # return JsonResponse({'message': 'Data received successfully'})
         
         form=Form_Check_items(request.POST,instance=f)
         if form.is_valid():
