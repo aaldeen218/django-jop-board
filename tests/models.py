@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import *
@@ -42,7 +43,16 @@ class Check(models.Model):
     p_name=models.ForeignKey(Patient,max_length=50,default=1,related_name='p_check',on_delete=models.CASCADE)
     test_name=models.ManyToManyField(Test,related_name='check_test',blank=False)
     check_total=models.IntegerField(null=True,blank=True)
-    check_date=models.DateTimeField(auto_now_add=True)
+    check_date=models.DateTimeField(auto_now_add=True,null=True,blank=True)
+    created= models.DateTimeField(editable=False,null=True,blank=True)
+    modified= models.DateTimeField(null=True,blank=True)
+
+    def save(self, *args, **kwargs):
+        ''' On save, update timestamps '''
+        if not self.id:
+            self.created = timezone.now()
+        self.modified = timezone.now()
+        return super(Check, self).save(*args, **kwargs)    
     
     def __str__(self):
         #return  f'{self.p_name} # {self.id},'
@@ -51,7 +61,7 @@ class Check(models.Model):
 
 
 class Check_items(models.Model):
-    check_id=models.ForeignKey(Check,max_length=50, on_delete= models.DO_NOTHING)
+    check_id=models.ForeignKey(Check,max_length=1000, on_delete= models.DO_NOTHING)
     sub_id=models.ForeignKey(SubTest,max_length=50, on_delete= models.DO_NOTHING,null=True,blank=True)
     check_result=models.CharField(max_length=50,null=True,blank=True)
     

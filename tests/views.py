@@ -6,6 +6,10 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from .models import SubTest,Test,Check
 from .form import *
+
+
+
+
 #from django.views.generic import ListView,CreateView
 
 def test_show(request):
@@ -81,9 +85,11 @@ def check_add(request):
     return render(request,'check_add.html',x)
 
 
-def result_add(request):
-    j=Check_items.objects.all()
-    f=Check_items.objects.all().first()
+def result_add(request,id):
+    print(id)
+    j=Check_items.objects.filter(check_id=id)
+    f=j.first()
+    print(f)
     
     ee=j
     #data=Form_Check(instance=f)
@@ -132,11 +138,15 @@ def result_add(request):
     else:
         form=Form_Check_items(instance=f)
         
-        x={ 'form':form, 'y':j,'ee':ee}
+        x={ 'form':form, 'y':j,'f':f}
     return render(request,'result_add.html',x)
 
 
-
+def result_list(request):
+    j=Check.objects.filter().order_by("-id")
+    
+    x={'y':j}
+    return render(request,'result_list.html',x)    
 
 
 
@@ -187,5 +197,4 @@ def result_add(request):
 #     def get(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
 #         xc=kwargs['x']
 #         return super().get(request, *args, **kwargs)
-
 
